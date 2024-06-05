@@ -1,0 +1,126 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Tiếp nhận học sinh</h3>
+    <div class="card card-body shadow-lg">
+        <div class="jus_center row">
+            <form role="form" method="POST" enctype="multipart/form-data" class="col-lg-10">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group row jus_center">
+                        <div class='col-lg-6'>
+                            <div class='row '>
+                                <div for='username_user' class="col-lg-4">
+                                    Username:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.username}}
+                                </div>
+                            </div>     
+                        </div>
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='password_user' class="col-lg-4">
+                                    Password:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.password}}
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='name_user' class="col-lg-2">
+                            Họ và tên:
+                        </div>
+                        <div class="col-lg-10">
+                        {{form.name}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='datepicker' class="col-lg-4">
+                                    Ngày sinh:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.dateOfBirth}}
+                                </div>
+                            </div>     
+                        </div>
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='sex_user' class="col-lg-4">
+                                    Giới tính:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.sex}}
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='email_user' class="col-lg-2">
+                            Email:
+                        </div>
+                        <div class="col-lg-10">
+                            {{form.email}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='email_user' class="col-lg-2">
+                            Số điện thoại:
+                        </div>
+                        <div class="col-lg-10">
+                            {{form.phone}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='address_user' class="col-lg-2">
+                            Địa chỉ:
+                        </div>
+                        <div class="col-lg-10">
+                            {{form.address}}
+                        </div>
+                    </div>
+                    <br>
+                    {% comment %} <div class="form-group row jus_center">
+                        <div class='col-lg-8'>
+                            <div class='row'>
+                                <div for='address_user' class="col-lg-3">
+                                    Địa chỉ:
+                                </div>
+                                <div class="col-lg-9">
+                                    {{form.address}}
+                                </div>
+                            </div>     
+                        </div>
+                        <div class='col-lg-4'>
+                            <div class='row'>
+                                <div class="col-lg-4">
+                                    Lớp học
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.classOfSchool}}
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <br> {% endcomment %}
+                    <div class="form-group row jus_space-around ">
+                        <div class="col-lg-3">
+                            <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">
+                                Thêm học sinh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

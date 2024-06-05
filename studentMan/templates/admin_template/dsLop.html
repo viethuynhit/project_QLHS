@@ -1,0 +1,67 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Danh sách lớp</h3>
+    <div class="card card-body shadow-lg">
+        <form method="get" class="main_form-header row">
+            {% csrf_token %}
+            <div class="main_form_class col-lg-3">
+                <div class="row">
+                    <div class="main_form_title col-lg-3">
+                        <p>Lớp</p>
+                    </div>
+                    <div class="main_form_select col-lg-6">
+                        {{classFilter.form.classOfSchool}}
+                    </div>
+                </div>
+            </div>
+            <div class="main_form_class col-lg-4">
+                <div class="row">
+                    <div class="main_form_title col-lg-5">
+                        <p>Niên khóa</p>
+                    </div>
+                    <div class="main_form_select col-lg-6">
+                        {{classFilter.form.year}}
+                    </div>
+                </div>
+            </div>
+            <div class="main_form_term col-lg-2">
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-primary col-lg-10">Xem kết quả</button>                              
+                </div>
+            </div>
+            {%if user.role == '1' %}
+            <div class="main_form_term col-lg-3">
+                <div class="row">
+                    <a href="{% url 'chonNienKhoaLop' %}" type="button" class="btn btn-outline-success col-lg-11" >Lập danh sách lớp</a> 
+                </div>
+            </div>
+            {%endif%}
+        </form>
+
+        <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+            </tr>
+            {% for student, date in students %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{student.user.name}}</td>
+                    <td>{{date}}</td>
+                    {%if student.user.sex == '1'%}
+                        <td>Nam</td>
+                    {%else%}
+                        <td>Nữ</td>
+                    {%endif%}
+                    <td>{{student.user.email}}</td>
+                    <td>{{student.user.address}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

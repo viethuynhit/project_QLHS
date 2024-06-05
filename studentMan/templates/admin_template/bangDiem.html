@@ -1,0 +1,61 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Bảng điểm môn học</h3>
+    <div class="card card-body shadow-lg">
+        <form method="get" class="main_form-header">
+            {% csrf_token %}
+            <div class="main_form_class row">
+                <div class="main_form_title col-lg-2">
+                    <p>Lớp</p>
+                </div>
+                <div class="main_form_title col-lg-3">
+                    <p>Môn học</p>
+                </div>
+                <div class="main_form_title col-lg-2">
+                    <p>Học kì</p>
+                </div>
+                <div class="main_form_title col-lg-3">
+                    <p>Niên khóa</p>
+                </div>
+            </div>
+            <div class="main_form_class row">
+                <div class="main_form_select col-lg-2">
+                        {{myFilter.form.classOfSchool}}
+                </div>
+                <div class="main_form_select col-lg-3">
+                        {{myFilter.form.subject}}
+                </div>
+                <div class="main_form_select col-lg-2">
+                        {{myFilter.form.semester_mark}}
+                </div>
+                <div class="main_form_select col-lg-3">
+                        {{myFilter.form.year}}
+                </div>
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn-outline-primary col-lg-11">Xem kết quả</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Họ Tên</th>
+                <th>Điểm 15'</th>
+                <th>Điểm 1 tiết</th>
+                <th>Điểm cuối học kì</th>
+            </tr>
+            {% for mark in marks %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{mark.student.user.name}}</td>
+                    <td>{{mark.markFifteen}}</td>
+                    <td>{{mark.markOne}}</td>
+                    <td>{{mark.markFinal}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock content %}

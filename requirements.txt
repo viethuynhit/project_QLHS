@@ -1,0 +1,7 @@
+Django==4.0.3
+virtualenv==20.14.0
+Pillow
+django_filter==21.1
+gunicorn
+dj-database-url 
+psycopg2

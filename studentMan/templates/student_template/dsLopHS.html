@@ -1,0 +1,72 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Danh sách lớp của học sinh</h3>
+    <div class="card card-body shadow-lg">
+    <form method="get" class="main_form-header row">
+            <div class="main_form_class col-lg-3">
+                <div class="row">
+                    <div class="main_form_title col-lg-3">
+                        <p>Lớp</p>
+                    </div>
+                    <div class="main_form_select col-lg-6">
+                        <select id="class_select" class="form-select" aria-label="Default select example">
+                            <option>---</option>
+                            {% for class in classofuser %}
+                                <option>{{ class.classId }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="main_form_term col-lg-2">
+                <div class="row">
+                    <button id='search' type="submit" class="btn btn-outline-primary col-lg-11">Xem kết quả</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+            </tr>
+            {% for student,date in resultStd %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{student.user.name}}</td>
+                    <td>{{date}}</td>
+                    {%if student.user.sex == '1'%}
+                        <td>Nam</td>
+                    {%else%}
+                        <td>Nữ</td>
+                    {%endif%}
+                    <td>{{student.user.email}}</td>
+                    <td>{{student.user.address}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+{% endblock content %}
+
+{% block custom_js %}
+    <script>
+        document.getElementById("class_select").value = "{{current_class}}"
+        function getNewViews() {
+            var e = document.getElementById("class_select");
+            var classSelected = e.options[e.selectedIndex].text;
+            window.location.href = {% url 'dsLopHS' %} + classSelected ;
+        }
+
+        btn = document.getElementById("search");
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            getNewViews();
+        })
+    </script>
+
+{% endblock custom_js %}

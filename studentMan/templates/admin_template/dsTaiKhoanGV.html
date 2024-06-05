@@ -1,0 +1,44 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Tài khoản giáo viên</h3>
+    <div class="card card-body shadow-lg">
+        <table class="table table-sm">
+                    <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Lớp</th>
+                <th>Môn</th>
+                <th>Điều chỉnh</th>
+            </tr>
+            {% for account,date,class in accounts %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{account.user.name}}</td>
+                    <td>{{date}}</td>
+                    {%if account.user.sex == '1'%}
+                        <td>Nam</td>
+                    {%else%}
+                        <td>Nữ</td>
+                    {%endif%}
+                    <td>{{account.user.email}}</td>
+                    <td>{{account.user.phone}}</td>
+                    <td>{{account.user.address}}</td>
+                    <td>{{class}}</td>
+                    <td>{{account.subject.name}}</td>
+                    <td>
+                        <a href="{% url 'capNhatTKGV' account.id %}" class="btn btn-primary mb-2">Cập nhật</a>
+                        <a href="{% url 'xoaTKGV' account.id %}" onclick="return confirm('Xác nhận xóa tài khoản này ?')" class="btn btn-danger mb-2">Xóa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+{% endblock content %}

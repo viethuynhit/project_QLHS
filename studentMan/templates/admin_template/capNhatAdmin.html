@@ -1,0 +1,92 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Cập nhật tài khoản admin</h3>
+    <div class="card card-body shadow-lg">
+        <div class="jus_center row">
+            <form role="form" method="POST" enctype="multipart/form-data" class="col-lg-10">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group row jus_center">
+                        <div for='username_user' class="col-lg-2">
+                            Username:
+                        </div>
+                        <div class="col-lg-10">
+                        {{form.username}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='name_user' class="col-lg-2">
+                            Họ và tên:
+                        </div>
+                        <div class="col-lg-10">
+                        {{form.name}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='datepicker' class="col-lg-4">
+                                    Ngày sinh:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.dateOfBirth}}
+                                </div>
+                            </div>     
+                        </div>
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='sex_user' class="col-lg-4">
+                                    Giới tính:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{form.sex}}
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='email_user' class="col-lg-2">
+                            Email:
+                        </div>
+                        <div class="col-lg-10">
+                        {{form.email}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='phone_user' class="col-lg-2">
+                            Số điện thoại:
+                        </div>
+                        <div class="col-lg-10">
+                        {{form.phone}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='address_user' class="col-lg-2">
+                            Địa chỉ:
+                        </div>
+                        <div class="col-lg-10">
+                        {{form.address}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_space-around ">
+                        <div class="col-lg-5">
+                            <button type="submit" onclick="return confirm('Xác nhận cập nhật lớp học ?')" class="btn btn-primary btn-block" style="width: 100%;">
+                                Cập nhật
+                            </button>
+                        </div>
+                        <div class="col-lg-5">
+                            <a href="{% url 'dsTaiKhoanAdmin' %}" class="btn btn-primary" style="width: 100%;">Trở về</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

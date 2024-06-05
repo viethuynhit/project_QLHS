@@ -1,0 +1,38 @@
+/* table */
+table, td, th {  
+    border: 1px solid #ddd;
+    text-align: center;
+}
+  
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+th, td {
+    padding: 15px;
+
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.main{
+    padding : 40px 0px;
+    display: table;
+}
+
+.main_form-header{
+    margin-bottom: 60px;
+}
+
+.main_form_title{
+    display: flex;
+    flex-direction: column; /* Thiết lập chiều flex theo cột */
+    justify-content: center; /* Căn giữa nội dung theo chiều flex*/
+
+}
+
+.main_form_title p {
+    margin: 0;
+}
+
+  

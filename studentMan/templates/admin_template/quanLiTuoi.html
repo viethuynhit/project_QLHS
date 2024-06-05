@@ -1,0 +1,30 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Quản lí Tuổi</h3>
+    <div class="card card-body shadow-lg">
+        <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Năm</th>
+                <th>Tuổi tối thiểu</th>
+                <th>Tuổi tối đa</th>
+                <th>Điều chỉnh</th>
+            </tr>
+            {% for year in age %}
+                <tr>
+                    <td>{{forloop.counter }}</td>
+                    <td>{{year.year}}</td>
+                    <td>{{year.min_age}}</td>
+                    <td>{{year.max_age}}</td>
+                    <td>
+                        <a href="{% url 'capNhatTuoi' year.id %}" class="btn btn-primary">Cập nhật</a> -
+                        <a href="{% url 'xoaTuoi' year.id %}" onclick="return confirm('Xác nhận xóa tuổi này ?')" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <a href="{% url 'themTuoi' %}" type="button" class="btn btn-outline-primary">Thêm Tuổi</a>
+{% endblock content %}

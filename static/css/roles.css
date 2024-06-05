@@ -1,0 +1,33 @@
+.HEADER {
+    text-align: center;
+}
+
+.bigdiv {
+    /*position: absolute;*/
+    margin-top: 5px;
+}
+
+
+.roles {
+    margin-left: 4px;
+}
+
+.p1 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: #7a8de3;
+    padding: 5px;
+    width: 50%;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.list-unstyled.components {
+    padding-top: 0 !important;
+    background-color: #7A8DE3FF;
+}
+
+#sidebar {
+    background-color: #5666a1;
+}

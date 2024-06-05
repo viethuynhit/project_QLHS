@@ -1,0 +1,65 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Cập nhật lớp học</h3>
+    <div class="card card-body shadow-lg">
+        <div class="jus_center row">
+            <form role="form" method="POST" enctype="multipart/form-data" class="col-lg-6">
+                {% csrf_token %}
+                <div class="card-body">
+                    {% for field in form  %}
+                        {% if field == form.classId %}
+                            <div class="form-group row jus_center">
+                                <div class="col-lg-5">
+                                    Tên lớp học:
+                                </div>
+                                <div class="col-lg-6">
+                                {{form.classId}}
+                                </div>
+                            </div>
+                            <br>
+                        {% elif field == form.year %}
+                            <div class="form-group row jus_center">
+                                <div class="col-lg-5">
+                                    Niên khóa:
+                                </div>
+                                <div class="col-lg-6">
+                                {{form.year}}
+                                </div>
+                            </div>
+                            <br>
+                        {% elif field == form.max_number %}
+                            <div class="form-group row jus_center">
+                                <div class="col-lg-5">
+                                    Sĩ số tối đa:
+                                </div>
+                                <div class="col-lg-6">
+                                {{form.max_number}}
+                                </div>
+                            </div>
+                            <br>
+                        {% else %}
+                            <div class="disable">
+                                {{field}}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="form-group row jus_space-around ">
+                        <div class="col-lg-5">
+                            <button type="submit" onclick="return confirm('Xác nhận cập nhật lớp học ?')" class="btn btn-primary btn-block" style="width: 100%;">
+                                {% if button_text %}
+                                    {{button_text}}
+                                {% else %}
+                                    Câp nhật
+                                {% endif %}
+                            </button>
+                        </div>
+                        <div class="col-lg-5">
+                            <a href="{% url 'quanLiLop' %}" class="btn btn-primary" style="width: 100%;">Trở về</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

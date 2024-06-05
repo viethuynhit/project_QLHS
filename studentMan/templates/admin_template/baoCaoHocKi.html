@@ -1,0 +1,105 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="wrap">
+        <h3 class="label">Báo cáo tổng kết học kì</h3>
+        <div class="card card-body shadow-lg">
+            <div class="main_form-header row">
+                <div class="main_form_class col-lg-3">
+                    <div class="row">
+                        <div class="main_form_title col-lg-3">
+                            <p>Lớp</p>
+                        </div>
+                        <div class="main_form_select col-lg-6">
+                            <select id="class_select" class="form-select" aria-label="Default select example">
+                                <option>---</option>
+                                {% for class in classes %}
+                                    <option>{{ class }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main_form_term col-lg-3">
+                    <div class="row">
+                        <div class="main_form_title col-lg-4">
+                            <p>Học kì</p>
+                        </div>
+                        <div class="main_form_select col-lg-6">
+                            <select id="semester_select" class="form-select" aria-label="Default select example">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_form_term col-lg-3">
+                    <div class="row">
+                        <div class="main_form_title col-lg-4" style="width: fit-content">
+                            <p>Niên khóa</p>
+                        </div>
+                        <div class="main_form_select col-lg-6">
+                            <select id="year_select" class="form-select" aria-label="Default select example">
+                                {% for nk in all_nienKhoa %}
+                                    <option>
+                                        {{ nk.year }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_form_term col-lg-2" style="margin-left: 20px">
+                    <div class="row">
+                        <button id="search" type="button" class="btn btn-outline-primary col-lg-11">Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>STT</th>
+                    <th>Lớp</th>
+                    <th>Sĩ Số</th>
+                    <th>Số Lượng Đạt</th>
+                    <th>Tỷ Lệ</th>
+                </tr>
+                {% for report in reports %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ report.class_id }}</td>
+                        <td>{{ report.student_number }}</td>
+                        <td>{{ report.passed_number }}</td>
+                        <td>{{ report.passed_rate }} %</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+    </div>
+{% endblock content %}
+
+{%block custom_js %}
+    <script>
+        document.getElementById("class_select").value = "{{lop}}"
+        document.getElementById("semester_select").value = "{{ hocky }}"
+        document.getElementById("year_select").value = "{{ nienKhoa }}"
+        function getNewViews() {
+            var e = document.getElementById("class_select");
+            var classSelected = e.options[e.selectedIndex].text;
+            var semesters = document.getElementById("semester_select");
+            var semester = semesters.options[semesters.selectedIndex].text;
+            var years = document.getElementById("year_select");
+            var year = years.options[years.selectedIndex].text;
+            window.location.href = {% url 'baoCaoHocKi' %} +classSelected + "/" + semester + "/" + year;
+        }
+
+        btn = document.getElementById("search");
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            getNewViews();
+        })
+    </script>
+{% endblock custom_js %}

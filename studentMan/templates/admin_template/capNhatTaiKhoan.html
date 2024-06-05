@@ -1,0 +1,95 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Quản lí tài khoản</h3>
+    <div class="card card-body shadow-lg">
+        {% if profile_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form_errors">
+                    {% for key, value in profile_form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <div class="jus_center row">
+            <form role="form" method="POST" enctype="multipart/form-data" class="col-lg-10">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group row jus_center">
+                        <div for='name_user' class="col-lg-2">
+                            Họ và tên:
+                        </div>
+                        <div class="col-lg-10">
+                        {{profile_form.name}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='datepicker' class="col-lg-4">
+                                    Ngày sinh:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{profile_form.dateOfBirth}}
+                                </div>
+                            </div>     
+                        </div>
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                                <div for='sex_user' class="col-lg-4">
+                                    Giới tính:
+                                </div>
+                                <div class="col-lg-8">
+                                    {{profile_form.sex}}
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='email_user' class="col-lg-2">
+                            Email:
+                        </div>
+                        <div class="col-lg-10">
+                        {{profile_form.email}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='phone_user' class="col-lg-2">
+                            Số điện thoại:
+                        </div>
+                        <div class="col-lg-10">
+                        {{profile_form.phone}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div for='address_user' class="col-lg-2">
+                            Địa chỉ:
+                        </div>
+                        <div class="col-lg-10">
+                        {{profile_form.address}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_space-around ">
+                        <div class="col-lg-3">
+                            <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">
+                                Cập nhật
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="{% url 'doiMatKhau' %}" class="btn btn-primary" style="width: 100%;">Đổi mật khẩu</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

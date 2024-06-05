@@ -1,0 +1,60 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-6">
+                    <div class="card text-center mb-4 bg-info">
+                        <div class="card-body text-white ">
+                            <h3>{{total_students}}</h3>
+                            <p class = 'text-white'>Học sinh</p>
+                        </div>
+                        <a href="{% url 'dsTaiKhoanHS' %}" class="card-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="card text-center mb-4 bg-primary">
+                        <div class="card-body text-white">
+                            <h3>{{total_teachers}}</h3>
+                            <p class = 'text-white'>Giáo viên</p>
+                        </div>
+                        <a href="{% url 'dsTaiKhoanGV' %}" class="card-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="card text-center mb-4 bg-success">
+                        <div class="card-body text-white">
+                            <h3>{{total_admins}}</h3>
+                            <p class = 'text-white'>Admin</p>
+                        </div>
+                        <a href="{% url 'dsTaiKhoanAdmin' %}" class="card-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row jus_center">
+                <div class="col-lg-4 col-6">
+                    <div class="card text-center mb-4 bg-warning">
+                        <div class="card-body text-white">
+                            <h3>{{total_classes}}</h3>
+                            <p class = 'text-white'>Lớp học</p>
+                        </div>
+                        <a href="{% url 'quanLiLop' %}" class="card-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="card text-center mb-4 bg-danger">
+                        <div class="card-body text-white">
+                            <h3>{{total_subjects}}</h3>
+                            <p class = 'text-white'>Môn học</p>
+                        </div>
+                        <a href="{% url 'quanLiMon' %}" class="card-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Thêm lớp học</h3>
+    <div class="card card-body shadow-lg">
+        <div class="jus_center row">
+            <form role="form" method="POST" enctype="multipart/form-data" class="col-lg-6">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group row jus_center">
+                        <div class="col-lg-5">
+                            Tên lớp học:
+                        </div>
+                        <div class="col-lg-6">
+                        {{form.classId}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div class="col-lg-5">
+                            Niên khóa:
+                        </div>
+                        <div class="col-lg-6">
+                        {{form.year}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row jus_center">
+                        <div class="col-lg-5">
+                            Sĩ số tối đa:
+                        </div>
+                        <div class="col-lg-6">
+                        {{form.max_number}}
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="form-group row jus_space-around ">
+                        <div class="col-lg-5">
+                            <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">
+                                Thêm lớp học
+                            </button>
+                        </div>
+                        <div class="col-lg-5">
+                            <a href="{% url 'quanLiLop' %}" class="btn btn-primary" style="width: 100%;">Trở về</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

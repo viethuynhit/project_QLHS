@@ -1,0 +1,53 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Quản lí lớp học</h3>
+    <div class="card card-body shadow-lg">
+        <form method="get" class="main_form-header row">
+            {% csrf_token %}
+            {% for m in yearFilter.form %}
+                {% if  forloop.counter == 1 %}
+                    <div class="main_form_class col-lg-4">
+                        <div class="row">
+                            <div class="main_form_title col-lg-4">
+                                <p>Niên khóa</p>
+                            </div>
+                            <div class="main_form_select col-lg-5">
+                                {{m}}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %} 
+            {% endfor %}
+            <div class="main_form_term col-lg-2">
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-primary col-lg-11">Xem kết quả</button>                              
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Tên lớp</th>
+                <th>Niên khóa</th>
+                <th>Sỉ số tối đa</th>
+                <th>Điều chỉnh</th>
+            </tr>
+            {% for class in classes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ class.classId }}</td>
+                    <td>{{ class.year }}</td>
+                    <td>{{class.max_number}}</td>
+                    <td>
+                        <a href="{% url 'capNhatLop' class.id %}" class="btn btn-primary">Cập nhật</a> -
+                        <a href="{% url 'xoaLop' class.id %}" onclick="return confirm('Bạn có muốn xóa lớp này ?')" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <a href="{% url 'themLop' %}" type="button" class="btn btn-outline-primary">Thêm lớp</a>
+{% endblock content %}

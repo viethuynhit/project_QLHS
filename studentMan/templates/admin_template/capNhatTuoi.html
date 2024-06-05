@@ -1,0 +1,61 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Cập nhật tuổi</h3>
+    <div class="card card-body shadow-lg">
+        <div class="jus_center row">
+            <form role="form" method="POST" enctype="multipart/form-data" class="col-lg-6">
+                {% csrf_token %}
+                <div class="card-body">
+                    {% for field in form  %}
+                        {% if field == form.year %}
+                            <div class="form-group row jus_center">
+                                <div class="col-lg-4">
+                                    Năm:
+                                </div>
+                                <div class="col-lg-6">
+                                {{form.year}}
+                                </div>
+                            </div>
+                            <br>
+                        {% elif field == form.min_age %}
+                            <div class="form-group row jus_center">
+                                <div class="col-lg-4">
+                                    Tuổi tối thiểu:
+                                </div>
+                                <div class="col-lg-6">
+                                {{form.min_age}}
+                                </div>
+                            </div>
+                            <br>
+                        {% elif field == form.max_age %}
+                            <div class="form-group row jus_center">
+                                <div class="col-lg-4">
+                                    Tuổi tối đa:
+                                </div>
+                                <div class="col-lg-6">
+                                {{form.max_age}}
+                                </div>
+                            </div>
+                            <br>
+                        {% else %}
+                            <div class="disable">
+                                {{field}}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="form-group row jus_space-around ">
+                        <div class="col-lg-4">
+                            <button type="submit" onclick="return confirm('Xác nhận cập nhật tuổi ?')" class="btn btn-primary btn-block" style="width: 100%;">
+                                Câp nhật
+                            </button>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="{% url 'quanLiTuoi' %}" class="btn btn-primary" style="width: 100%;">Trở về</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'studentMan/base.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="label">Quản lí môn học</h3>
+    <div class="card card-body shadow-lg">
+        <form method="get" class="main_form-header row">
+            {% csrf_token %}
+            <div class="main_form_class col-lg-4">
+                <div class="row">
+                    <div class="main_form_title col-lg-4">
+                        <p>Niên khóa</p>
+                    </div>
+                    <div class="main_form_select col-lg-5">
+                        {{subjectWithYearFilter.form.year}}
+                    </div>
+                </div>
+            </div>
+            <div class="main_form_term col-lg-2">
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-primary col-lg-11">Xem kết quả</button>                              
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-sm">
+            <tr>
+                <th>STT</th>
+                <th>Tên môn học</th>
+                <th>Niên khóa</th>
+                <th>Điểm chuẩn đạt môn</th>
+                <th>Điều chỉnh</th>
+            </tr>
+            {% for subject in subjects %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{subject.name}}</td>
+                    <td>{{subject.year}}</td>
+                    <td>{{subject.approved_mark}}</td>
+                    <td>
+                        <a href="{% url 'capNhatMon' subject.id %}" class="btn btn-primary">Cập nhật</a> - 
+                        <a href="{% url 'xoaMon' subject.id %}" onclick="return confirm('Xác nhận xóa môn học này ?')" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <a href="{% url 'themMon' %}" type="button" class="btn btn-outline-primary">Thêm môn học</a>
+{% endblock content %}
